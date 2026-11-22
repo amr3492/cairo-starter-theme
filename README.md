@@ -2,6 +2,8 @@
 
 A lightweight business/portfolio WordPress theme written from scratch: no frameworks, no page-builder lock-in, no jQuery. Hero section, services grid and portfolio loop are built in, and the accent color and hero copy are editable from the Customizer.
 
+**[Project page](https://amr3492.github.io/cairo-starter-theme/)** - features, screenshot and install guide.
+
 ![Theme screenshot](screenshot.png)
 
 ## Features
