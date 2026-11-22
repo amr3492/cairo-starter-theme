@@ -1,0 +1,257 @@
+/*
+Theme Name: Cairo Starter
+Theme URI: https://github.com/amr3492/cairo-starter-theme
+Author: Amr Abdelbaki
+Author URI: https://github.com/amr3492
+Description: A lightweight, fast business and portfolio theme. Hero section, services grid, portfolio loop and call-to-action built in; accent color, hero copy and layout are all editable from the Customizer. Translation-ready, accessibility-ready, no frameworks, no page-builder lock-in.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: cairo-starter
+Tags: business, portfolio, custom-colors, custom-logo, custom-menu, featured-images, one-column, two-columns, translation-ready, accessibility-ready
+*/
+
+/*--------------------------------------------------------------
+1. Base
+--------------------------------------------------------------*/
+:root {
+  --accent: #e8641c;
+  --ink: #1a2332;
+  --muted: #5b6675;
+  --bg: #ffffff;
+  --bg-soft: #f6f7f9;
+  --line: #e4e7ec;
+  --radius: 12px;
+  --font: "Segoe UI", Tahoma, "Noto Kufi Arabic", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+}
+
+img { max-width: 100%; height: auto; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.screen-reader-text {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+}
+.screen-reader-text:focus {
+  width: auto; height: auto; clip: auto;
+  background: var(--ink); color: #fff;
+  padding: 8px 14px; border-radius: 6px; z-index: 100;
+}
+
+.container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+/*--------------------------------------------------------------
+2. Header & navigation
+--------------------------------------------------------------*/
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: sticky; top: 0; z-index: 50;
+}
+.site-header .container {
+  display: flex; align-items: center; gap: 24px;
+  padding-top: 14px; padding-bottom: 14px;
+}
+.site-branding .custom-logo { max-height: 44px; width: auto; }
+.site-title { margin: 0; font-size: 1.35rem; }
+.site-title a { color: var(--ink); font-weight: 700; }
+.site-title a:hover { text-decoration: none; color: var(--accent); }
+.site-description { margin: 0; font-size: .85rem; color: var(--muted); }
+
+.main-navigation { margin-inline-start: auto; }
+.main-navigation ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; gap: 22px;
+}
+.main-navigation a { color: var(--ink); font-weight: 500; font-size: .95rem; }
+.main-navigation a:hover { color: var(--accent); text-decoration: none; }
+.main-navigation .current-menu-item > a { color: var(--accent); }
+
+.menu-toggle {
+  display: none;
+  margin-inline-start: auto;
+  background: none; border: 1px solid var(--line); border-radius: 8px;
+  padding: 8px 12px; font-size: 1rem; cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .menu-toggle { display: block; }
+  .main-navigation ul {
+    display: none; flex-direction: column; gap: 12px;
+    padding: 16px 0;
+  }
+  .main-navigation.toggled ul { display: flex; }
+  .main-navigation { width: 100%; }
+}
+
+/*--------------------------------------------------------------
+3. Hero (front page)
+--------------------------------------------------------------*/
+.hero {
+  background: linear-gradient(135deg, var(--ink) 0%, #2c3a52 100%);
+  color: #fff;
+  padding: 96px 0;
+  text-align: center;
+}
+.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin: 0 0 16px; }
+.hero p { font-size: 1.15rem; color: #cbd5e1; max-width: 640px; margin: 0 auto 28px; }
+
+.btn, .wp-block-button__link, input[type="submit"] {
+  display: inline-block;
+  background: var(--accent); color: #fff !important;
+  padding: 13px 28px; border-radius: 8px;
+  font-weight: 600; font-size: 1rem;
+  border: none; cursor: pointer;
+  transition: transform .12s, box-shadow .12s;
+}
+.btn:hover, .wp-block-button__link:hover, input[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  text-decoration: none;
+}
+.btn-outline {
+  background: transparent; border: 2px solid #fff; color: #fff !important;
+  margin-inline-start: 12px;
+}
+
+/*--------------------------------------------------------------
+4. Sections, services, portfolio
+--------------------------------------------------------------*/
+.section { padding: 72px 0; }
+.section.alt { background: var(--bg-soft); }
+.section-heading { text-align: center; margin-bottom: 44px; }
+.section-heading h2 { font-size: 2rem; margin: 0 0 8px; }
+.section-heading p { color: var(--muted); margin: 0; }
+
+.grid-3 {
+  display: grid; gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .grid-3 { grid-template-columns: 1fr; } }
+
+.service-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: box-shadow .15s;
+}
+.service-card:hover { box-shadow: 0 10px 28px rgba(0,0,0,.08); }
+.service-card h3 { margin: 0 0 10px; font-size: 1.2rem; }
+.service-card p { color: var(--muted); margin: 0; font-size: .95rem; }
+.service-card .dashicons { font-size: 32px; color: var(--accent); margin-bottom: 12px; }
+
+.portfolio-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--bg);
+}
+.portfolio-card img { display: block; aspect-ratio: 16/10; object-fit: cover; }
+.portfolio-card .card-body { padding: 18px 20px; }
+.portfolio-card h3 { margin: 0 0 6px; font-size: 1.1rem; }
+.portfolio-card h3 a { color: var(--ink); }
+
+/*--------------------------------------------------------------
+5. Content area
+--------------------------------------------------------------*/
+.site-content { padding: 56px 0; }
+.content-with-sidebar {
+  display: grid; grid-template-columns: 1fr 300px; gap: 48px;
+}
+@media (max-width: 900px) { .content-with-sidebar { grid-template-columns: 1fr; } }
+
+.entry-title { font-size: 2rem; margin: 0 0 12px; }
+.entry-title a { color: var(--ink); }
+.entry-meta { color: var(--muted); font-size: .88rem; margin-bottom: 20px; }
+.entry-content { font-size: 1.02rem; }
+.post-thumbnail { margin-bottom: 24px; border-radius: var(--radius); overflow: hidden; }
+
+.post-navigation, .posts-navigation { margin: 40px 0; }
+.pagination { display: flex; gap: 8px; justify-content: center; margin: 40px 0; }
+.pagination .page-numbers {
+  padding: 8px 14px; border: 1px solid var(--line);
+  border-radius: 8px; color: var(--ink);
+}
+.pagination .current { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/*--------------------------------------------------------------
+6. Sidebar & widgets
+--------------------------------------------------------------*/
+.widget {
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin-bottom: 20px;
+}
+.widget-title { margin: 0 0 12px; font-size: 1.05rem; }
+.widget ul { margin: 0; padding-inline-start: 18px; }
+
+/*--------------------------------------------------------------
+7. Comments & forms
+--------------------------------------------------------------*/
+.comment-list { list-style: none; padding: 0; }
+.comment-body {
+  background: var(--bg-soft); border-radius: var(--radius);
+  padding: 16px 20px; margin-bottom: 14px;
+}
+.comment-reply-link { font-size: .88rem; }
+
+input[type="text"], input[type="email"], input[type="url"],
+input[type="search"], textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: inherit; font-size: .95rem;
+}
+input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+/*--------------------------------------------------------------
+8. Footer
+--------------------------------------------------------------*/
+.site-footer {
+  background: var(--ink); color: #cbd5e1;
+  padding: 48px 0 24px; margin-top: 40px;
+}
+.footer-widgets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+@media (max-width: 760px) { .footer-widgets { grid-template-columns: 1fr; } }
+.site-footer .widget { background: transparent; padding: 0; }
+.site-footer .widget-title { color: #fff; }
+.site-footer a { color: #cbd5e1; }
+.site-footer a:hover { color: var(--accent); }
+.site-info {
+  text-align: center; margin-top: 32px; padding-top: 20px;
+  border-top: 1px solid #2c3a52; font-size: .85rem; color: #7c8aa0;
+}
+
+/*--------------------------------------------------------------
+9. WordPress core classes
+--------------------------------------------------------------*/
+.alignleft { float: left; margin: 0 20px 12px 0; }
+.alignright { float: right; margin: 0 0 12px 20px; }
+.aligncenter { display: block; margin: 0 auto 12px; }
+.wp-caption { max-width: 100%; }
+.wp-caption-text { font-size: .85rem; color: var(--muted); text-align: center; }
+.sticky .entry-title::before { content: "★ "; color: var(--accent); }
+.bypostauthor .comment-body { border-inline-start: 4px solid var(--accent); }
+.gallery { display: flex; flex-wrap: wrap; gap: 10px; }
+.gallery-item { flex: 1 1 150px; margin: 0; }
